@@ -19,31 +19,31 @@ class PlayingFrame extends Frame{
 	//URL sound = this.getClass().getResource("gargantuar_thump.wav");
 	//AudioClip ac = Applet.newAudioClip(sound);
 	MouseButton[] b = new MouseButton[9];
-	Label title = new Label("´òµØÊó   V1.00");
-	int timeleft;	//±ê¼ÇÊ±¼äÉÏÏŞÊıÖµ£¨²»±ä£©
-	Label time;	//¸ºÔğÏÔÊ¾µ±Ç°Ê±¼ä±êÇ©
-	int totalscore = 0;	//×ÜµÃ·ÖÊıÖµ
-	Label score;	//¸ºÔğÏÔÊ¾×ÜµÃ·ÖµÄ±êÇ©
-	int maxLifes;	//±ê¼Ç×î´óÉúÃüÉÏÏŞ
-	int lifes;	//±ê¼Çµ±Ç°ÉúÃüÖµ
-	Label currentLife;	//¸ºÔğÏÔÊ¾µ±Ç°Ê£ÓàÉúÃüÖµµÄ±êÇ©
-	Button start = new Button("¿ªÊ¼");
-	Button pause = new Button("ÔİÍ£");
-	Button resume = new Button("¼ÌĞø");
-	Button restart = new Button("ÖØÖÃ");
-	Button back = new Button("·µ»Ø");
-	TimeController tmc; //¸ºÔğ¿ØÖÆÊ±¼äµÄÏß³Ì
+	Label title = new Label("æ‰“åœ°é¼    V1.00");
+	int timeleft;	//æ ‡è®°æ—¶é—´ä¸Šé™æ•°å€¼ï¼ˆä¸å˜ï¼‰
+	Label time;	//è´Ÿè´£æ˜¾ç¤ºå½“å‰æ—¶é—´æ ‡ç­¾
+	int totalscore = 0;	//æ€»å¾—åˆ†æ•°å€¼
+	Label score;	//è´Ÿè´£æ˜¾ç¤ºæ€»å¾—åˆ†çš„æ ‡ç­¾
+	int maxLifes;	//æ ‡è®°æœ€å¤§ç”Ÿå‘½ä¸Šé™
+	int lifes;	//æ ‡è®°å½“å‰ç”Ÿå‘½å€¼
+	Label currentLife;	//è´Ÿè´£æ˜¾ç¤ºå½“å‰å‰©ä½™ç”Ÿå‘½å€¼çš„æ ‡ç­¾
+	Button start = new Button("å¼€å§‹");
+	Button pause = new Button("æš‚åœ");
+	Button resume = new Button("ç»§ç»­");
+	Button restart = new Button("é‡ç½®");
+	Button back = new Button("è¿”å›");
+	TimeController tmc; //è´Ÿè´£æ§åˆ¶æ—¶é—´çš„çº¿ç¨‹
 	Panel mousePanel = new Panel(new GridLayout(3,0));
 	Panel manuPanel = new Panel(new GridLayout(0,1));
-	boolean startCount = false;	//±ê¼ÇÊÇ·ñÒÑ¾­¿ªÊ¼ÁËÓÎÏ·£¬true±íÊ¾¿ªÊ¼¼Æ·Ö
-	int currentMouse = 0;	//ÓÃÀ´±ê¼Çµ±Ç°ÒÑ¾­³öÏÖµÄµØÊó×ÜÊı
-	int speed;	//±ê¼ÇÓÎÏ·ËÙ¶È
+	boolean startCount = false;	//æ ‡è®°æ˜¯å¦å·²ç»å¼€å§‹äº†æ¸¸æˆï¼Œtrueè¡¨ç¤ºå¼€å§‹è®¡åˆ†
+	int currentMouse = 0;	//ç”¨æ¥æ ‡è®°å½“å‰å·²ç»å‡ºç°çš„åœ°é¼ æ€»æ•°
+	int speed;	//æ ‡è®°æ¸¸æˆé€Ÿåº¦
 	
 	PlayingFrame(int o,int j,int k){
-		setVal(o,j,k);	//Éè¶¨ÓÎÏ·µÄÊ±¼äo£¬ÉúÃüÖµj£¬ÓÎÏ·ËÙ¶Èk
-		time = new Label("Ê£ÓàÊ±¼ä£º"+timeleft);
-		score = new Label("×Ü·ÖÊı£º"+totalscore);
-		currentLife = new Label("Ê£ÓàÉúÃü£º"+lifes);
+		setVal(o,j,k);	//è®¾å®šæ¸¸æˆçš„æ—¶é—´oï¼Œç”Ÿå‘½å€¼jï¼Œæ¸¸æˆé€Ÿåº¦k
+		time = new Label("å‰©ä½™æ—¶é—´ï¼š"+timeleft);
+		score = new Label("æ€»åˆ†æ•°ï¼š"+totalscore);
+		currentLife = new Label("å‰©ä½™ç”Ÿå‘½ï¼š"+lifes);
 		int i;
 		for(i=0;i<b.length;i++){
 			b[i] = new MouseButton();
@@ -56,21 +56,21 @@ class PlayingFrame extends Frame{
 					//ac.stop();
 					//ac.play();
 					if(startCount){
-						if(c.equals(Color.GREEN)){	//ÂÌÉ«¼Æ10·Ö
+						if(c.equals(Color.GREEN)){	//ç»¿è‰²è®¡10åˆ†
 							totalscore+=10;
-							score.setText("×Ü·ÖÊı£º"+totalscore);
-						}else if(c.equals(Color.BLUE)){	//À¶É«¼Æ5·Ö
+							score.setText("æ€»åˆ†æ•°ï¼š"+totalscore);
+						}else if(c.equals(Color.BLUE)){	//è“è‰²è®¡5åˆ†
 							totalscore+=5;
-							score.setText("×Ü·ÖÊı£º"+totalscore);
-						}else if(c.equals(Color.RED)){	//ºìÉ«¿Ûµô1µãÉúÃüÖµ£¬Í¬Ê±ÅĞ¶ÏÉúÃüÖµÊÇ·ñÎª0
+							score.setText("æ€»åˆ†æ•°ï¼š"+totalscore);
+						}else if(c.equals(Color.RED)){	//çº¢è‰²æ‰£æ‰1ç‚¹ç”Ÿå‘½å€¼ï¼ŒåŒæ—¶åˆ¤æ–­ç”Ÿå‘½å€¼æ˜¯å¦ä¸º0
 							lifes--;
-							currentLife.setText("Ê£ÓàÉúÃü£º"+lifes);
-							if(lifes==0){	//ÈôÉúÃüÖµÎª0±íÊ¾ÓÎÏ·½áÊø
-								gameStop();	//ÓÎÏ·Í£Ö¹
-								JOptionPane.showMessageDialog(null,"ÉúÃüÖµÎªÁã\nÓÎÏ·½áÊø");
-								JOptionPane.showMessageDialog(null,"ÄãµÄµÃ·ÖÊÇ"+totalscore);
+							currentLife.setText("å‰©ä½™ç”Ÿå‘½ï¼š"+lifes);
+							if(lifes==0){	//è‹¥ç”Ÿå‘½å€¼ä¸º0è¡¨ç¤ºæ¸¸æˆç»“æŸ
+								gameStop();	//æ¸¸æˆåœæ­¢
+								JOptionPane.showMessageDialog(null,"ç”Ÿå‘½å€¼ä¸ºé›¶\næ¸¸æˆç»“æŸ");
+								JOptionPane.showMessageDialog(null,"ä½ çš„å¾—åˆ†æ˜¯"+totalscore);
 								startCount = false;
-								askForSave();	//Ñ¯ÎÊÊÇ·ñ±£´æ
+								askForSave();	//è¯¢é—®æ˜¯å¦ä¿å­˜
 							}
 						}
 					}
@@ -84,18 +84,18 @@ class PlayingFrame extends Frame{
 			public void actionPerformed(ActionEvent a){
 				for(int i=0;i<b.length;i++){
 					if(b[i].mc!=null && b[i].mc.t!=null){
-						b[i].cutThread();	//ËùÓĞ¸ñ×ÓµÄÏß³Ì¶¼Í£Ö¹
+						b[i].cutThread();	//æ‰€æœ‰æ ¼å­çš„çº¿ç¨‹éƒ½åœæ­¢
 					}
 				}
 				if(tmc.t!=null){
-					tmc.t.interrupt();	//Í¬Ê±°Ñ¿ØÖÆÊ±¼äµÄÏß³ÌÒ²Í£Ö¹
+					tmc.t.interrupt();	//åŒæ—¶æŠŠæ§åˆ¶æ—¶é—´çš„çº¿ç¨‹ä¹Ÿåœæ­¢
 				}
-				totalscore = 0;		//×Ü·ÖÇåÁã
-				lifes = maxLifes;	//ÉúÃüÖµ»Ö¸´
-				currentLife.setText("Ê£ÓàÉúÃü£º"+lifes);
-				score.setText("×Ü·ÖÊı£º"+totalscore);
-				time.setText("Ê£ÓàÊ±¼ä£º"+timeleft);
-				startCount = false;	//¿ª¹Ø¹Ø±Õ
+				totalscore = 0;		//æ€»åˆ†æ¸…é›¶
+				lifes = maxLifes;	//ç”Ÿå‘½å€¼æ¢å¤
+				currentLife.setText("å‰©ä½™ç”Ÿå‘½ï¼š"+lifes);
+				score.setText("æ€»åˆ†æ•°ï¼š"+totalscore);
+				time.setText("å‰©ä½™æ—¶é—´ï¼š"+timeleft);
+				startCount = false;	//å¼€å…³å…³é—­
 			}
 		});
 		
@@ -105,7 +105,7 @@ class PlayingFrame extends Frame{
 				for(int i=0;i<b.length;i++) {
 					b[i].setFlag(false);
 				}
-				//JOptionPane.showMessageDialog(null,"Õâ¸öÓĞ´ı¿ª·¢£¬¹ş¹ş£¡");	//ÓĞ´ı¿ª·¢£¬³õ²½´òËãÎªËùÓĞÏß³ÌË¯Ãß
+				//JOptionPane.showMessageDialog(null,"è¿™ä¸ªæœ‰å¾…å¼€å‘ï¼Œå“ˆå“ˆï¼");	//æœ‰å¾…å¼€å‘ï¼Œåˆæ­¥æ‰“ç®—ä¸ºæ‰€æœ‰çº¿ç¨‹ç¡çœ 
 			}
 		});
 		
@@ -115,14 +115,14 @@ class PlayingFrame extends Frame{
 				for(int i=0;i<b.length;i++) {
 					b[i].setFlag(true);
 				}
-				//JOptionPane.showMessageDialog(null,"Õâ¸öÓĞ´ı¿ª·¢£¬¹ş¹ş£¡");	//ÓĞ´ı¿ª·¢£¬³õ²½´òËãÎªËùÓĞÏß³Ì´ÓË¯ÃßÖĞ»Ö¸´Ö´ĞĞ
+				//JOptionPane.showMessageDialog(null,"è¿™ä¸ªæœ‰å¾…å¼€å‘ï¼Œå“ˆå“ˆï¼");	//æœ‰å¾…å¼€å‘ï¼Œåˆæ­¥æ‰“ç®—ä¸ºæ‰€æœ‰çº¿ç¨‹ä»ç¡çœ ä¸­æ¢å¤æ‰§è¡Œ
 			}
 		});
 		
 		back.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent a){
 				if(startCount){
-					JOptionPane.showMessageDialog(null,"ÓÎÏ·ÖĞ£¬²»ÄÜ·µ»Ø£¡");	//¸ºÔğ·µ»ØÉÏÒ»¸ö½çÃæ
+					JOptionPane.showMessageDialog(null,"æ¸¸æˆä¸­ï¼Œä¸èƒ½è¿”å›ï¼");	//è´Ÿè´£è¿”å›ä¸Šä¸€ä¸ªç•Œé¢
 					return;
 				}
 				setVisible(false);
@@ -163,7 +163,7 @@ class PlayingFrame extends Frame{
 		lifes = maxLifes;
 	}
 	
-	private void gameStop(){	//ÓÎÏ·Í£Ö¹£¬ËùÓĞµÄÏß³Ì¶¼Í£Ö¹
+	private void gameStop(){	//æ¸¸æˆåœæ­¢ï¼Œæ‰€æœ‰çš„çº¿ç¨‹éƒ½åœæ­¢
 		for(int i=0;i<b.length;i++){
 			if(b[i].mc.t!=null){
 				b[i].cutThread();
@@ -172,15 +172,15 @@ class PlayingFrame extends Frame{
 		tmc.t.interrupt();
 	}
 	
-	private void askForSave(){	//Ñ¯ÎÊ±£´æ·ÖÊı
-		int t = JOptionPane.showConfirmDialog(null,"ÄãµÄ·ÖÊıÊÇ"+totalscore+"\nÊÇ·ñÒª±£´æ£¿");
+	private void askForSave(){	//è¯¢é—®ä¿å­˜åˆ†æ•°
+		int t = JOptionPane.showConfirmDialog(null,"ä½ çš„åˆ†æ•°æ˜¯"+totalscore+"\næ˜¯å¦è¦ä¿å­˜ï¼Ÿ");
 		if(t==0){
 			String[] tempstring = new String[5];
 			String temp;
-			String name = JOptionPane.showInputDialog("ÇëÊäÈëĞÕÃû£¨Ó¢ÎÄ£©");
+			String name = JOptionPane.showInputDialog("è¯·è¾“å…¥å§“åï¼ˆè‹±æ–‡ï¼‰");
 			while(name.length()>5 ||!name.matches("\\w+")){
-				JOptionPane.showMessageDialog(null,"Ãû×Ö×î´ó³¤¶ÈÎª5£¡");
-				name = JOptionPane.showInputDialog("ÇëÊäÈëĞÕÃû£¨Ó¢ÎÄ£©");
+				JOptionPane.showMessageDialog(null,"åå­—æœ€å¤§é•¿åº¦ä¸º5ï¼");
+				name = JOptionPane.showInputDialog("è¯·è¾“å…¥å§“åï¼ˆè‹±æ–‡ï¼‰");
 			}
 			name = getSpace(name);
 			int i = 0;
@@ -188,24 +188,24 @@ class PlayingFrame extends Frame{
 			int currentMaxNumber = totalscore;
 			Pattern p = Pattern.compile("######\\d+######");
 			Matcher m;
-			BufferedReader br = null;	//´ÓÒÑÓĞµÄ¼ÇÂ¼ÖĞ¶ÁÈ¡Êı¾İ£¬¸ù¾İ·ÖÊıÀ´ÅĞ¶Ïµ±Ç°Òª±£´æµÄ·ÖÊıÅÅÔÚµÚ¼¸
-			BufferedWriter bw = null;	//ÔÙ½«ÖØĞÂÅÅºÃµÄÊı¾İÔÙ´ÎĞ´»ØÓ²ÅÌ
+			BufferedReader br = null;	//ä»å·²æœ‰çš„è®°å½•ä¸­è¯»å–æ•°æ®ï¼Œæ ¹æ®åˆ†æ•°æ¥åˆ¤æ–­å½“å‰è¦ä¿å­˜çš„åˆ†æ•°æ’åœ¨ç¬¬å‡ 
+			BufferedWriter bw = null;	//å†å°†é‡æ–°æ’å¥½çš„æ•°æ®å†æ¬¡å†™å›ç¡¬ç›˜
 			try{
 				File f = new File("F:\\highscore.tg");
-				if(!f.exists()){	//ÓÃÓÚÅĞ¶ÏÊÇ·ñÊÇµÚÒ»´ÎÍæ£¬µÚÒ»´ÎÍæÔò×Ô¶¯´´½¨Ò»¸öĞÂµÄ¿Õ¼ÇÂ¼
+				if(!f.exists()){	//ç”¨äºåˆ¤æ–­æ˜¯å¦æ˜¯ç¬¬ä¸€æ¬¡ç©ï¼Œç¬¬ä¸€æ¬¡ç©åˆ™è‡ªåŠ¨åˆ›å»ºä¸€ä¸ªæ–°çš„ç©ºè®°å½•
 					f.createNewFile();
 				}
 				br = new BufferedReader(new FileReader(f));
 				temp = br.readLine();
-				if(temp==null){	//ÅĞ¶Ï¼ÇÂ¼ÊÇ·ñÎª¿Õ£¬Îª¿ÕÔòÖ±½Ó½«·ÖÊıĞ´Èë
+				if(temp==null){	//åˆ¤æ–­è®°å½•æ˜¯å¦ä¸ºç©ºï¼Œä¸ºç©ºåˆ™ç›´æ¥å°†åˆ†æ•°å†™å…¥
 					br.close();
 					bw = new BufferedWriter(new FileWriter(f));
 					bw.write(name+"######"+totalscore+"######"+getDate()+"\r\n");
 					bw.close();		
 					return;
 				}
-				while(temp!=null && i<=4){	//Èç¹û¼ÇÂ¼·Ç¿Õ£¬ÔòÃ¿´Î¶ÁÈëÒ»Ìõ¼ÇÂ¼£¬±È½Ï¸Ã¼ÇÂ¼Óëµ±Ç°Òª±£´æµÄ·ÖÊıµÄ´óĞ¡£¬²¢ÓÃ
-											//ÁíÍâÒ»¸ö±êÊ¶µ±Ç°Òª±£´æµÄ·ÖÊıËù´¦µÄÎ»ÖÃ¡£
+				while(temp!=null && i<=4){	//å¦‚æœè®°å½•éç©ºï¼Œåˆ™æ¯æ¬¡è¯»å…¥ä¸€æ¡è®°å½•ï¼Œæ¯”è¾ƒè¯¥è®°å½•ä¸å½“å‰è¦ä¿å­˜çš„åˆ†æ•°çš„å¤§å°ï¼Œå¹¶ç”¨
+											//å¦å¤–ä¸€ä¸ªæ ‡è¯†å½“å‰è¦ä¿å­˜çš„åˆ†æ•°æ‰€å¤„çš„ä½ç½®ã€‚
 					tempstring[i] = temp;
 					m = p.matcher(temp);
 					if(m.find()){
@@ -220,7 +220,7 @@ class PlayingFrame extends Frame{
 				br.close();
 				bw = new BufferedWriter(new FileWriter(f));
 				int count = 1;
-				for(i=0;count<=5 &&i < 5;i++){	//Ğ´»ØÓ²ÅÌ
+				for(i=0;count<=5 &&i < 5;i++){	//å†™å›ç¡¬ç›˜
 					if(i==maxIndex+1){
 						bw.write(name+"######"+totalscore+"######"+getDate()+"\r\n");
 						count++;
@@ -231,7 +231,7 @@ class PlayingFrame extends Frame{
 					}
 				}
 				bw.close();
-				JOptionPane.showMessageDialog(null,"¼ÇÂ¼ÒÑ¾­±£´æ£¡");
+				JOptionPane.showMessageDialog(null,"è®°å½•å·²ç»ä¿å­˜ï¼");
 			}catch(IOException e){
 				try {
 					if(br!=null){
@@ -240,16 +240,16 @@ class PlayingFrame extends Frame{
 					if(bw!=null){
 						bw.close();
 					}
-					JOptionPane.showMessageDialog(null,"³ö´íÁË£¡");
+					JOptionPane.showMessageDialog(null,"å‡ºé”™äº†ï¼");
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null,"³ö´íÁË£¡");
+					JOptionPane.showMessageDialog(null,"å‡ºé”™äº†ï¼");
 				}
 			}
 		}
 	}
 	
-	private String getSpace(String s){	//ÓÃÓÚÍ³Ò»¸ñÊ½£¬¶ÔÓÚÊäÈë×ÖÊı±È½ÏÉÙµÄ×Ö·û´®×Ô¶¯ÓÃ¿Õ¸ñ²¹Âú
-										//²»¹ı¸Ğ¾õ²¹³öÀ´µÄĞ§¹û²»ºÃ¡£
+	private String getSpace(String s){	//ç”¨äºç»Ÿä¸€æ ¼å¼ï¼Œå¯¹äºè¾“å…¥å­—æ•°æ¯”è¾ƒå°‘çš„å­—ç¬¦ä¸²è‡ªåŠ¨ç”¨ç©ºæ ¼è¡¥æ»¡
+										//ä¸è¿‡æ„Ÿè§‰è¡¥å‡ºæ¥çš„æ•ˆæœä¸å¥½ã€‚
 		int i = 2*(5-s.length()+1);
 		for(int j=1;j<=i;j++){
 			s+=" ";
@@ -257,16 +257,16 @@ class PlayingFrame extends Frame{
 		return s;
 	}
 	
-	private String getDate(){			//»ñµÃµ±Ç°Ê±¼ä£¬ÓÎÏ·¼ÇÂ¼ÖĞ°üÀ¨ÁËÓÎÏ·µÄÊ±¼ä
+	private String getDate(){			//è·å¾—å½“å‰æ—¶é—´ï¼Œæ¸¸æˆè®°å½•ä¸­åŒ…æ‹¬äº†æ¸¸æˆçš„æ—¶é—´
 		TimeZone tz = TimeZone.getTimeZone("GMT+8");
-		SimpleDateFormat chinaFormatter = new SimpleDateFormat("yyyyÄêMMÔÂddÈÕ   HHÊ±mm·Ö");
+		SimpleDateFormat chinaFormatter = new SimpleDateFormat("yyyyå¹´MMæœˆddæ—¥   HHæ—¶mmåˆ†");
 		chinaFormatter.setTimeZone(tz);
 		String s=chinaFormatter.format(new Date());
 		return s;
 	}
 	
 	
-	class TimeController implements ActionListener, Runnable{	//¿ØÖÆÊ±¼äÁ÷ÊÅµÄÏß³ÌÀà
+	class TimeController implements ActionListener, Runnable{	//æ§åˆ¶æ—¶é—´æµé€çš„çº¿ç¨‹ç±»
 		Thread t;
 		boolean over = false;
 		boolean count = false;
@@ -279,23 +279,23 @@ class PlayingFrame extends Frame{
 		}
 		public void run(){
 			if(totalscore>0 || lifes<maxLifes){
-				JOptionPane.showMessageDialog(null,"Çëµã»÷ÖØÖÃ");
+				JOptionPane.showMessageDialog(null,"è¯·ç‚¹å‡»é‡ç½®");
 				return;
 			}
 			int temp = timeleft;
 			while(!over){
-				if(count){	//Ïß³ÌÃ¿Ö´ĞĞÒ»´Î¾ÍË¯Ãß1ÃëÖÓ£¬Ã¿Ò»´Î½«Ê±¼ä¼õÉÙÒ»Ãë
+				if(count){	//çº¿ç¨‹æ¯æ‰§è¡Œä¸€æ¬¡å°±ç¡çœ 1ç§’é’Ÿï¼Œæ¯ä¸€æ¬¡å°†æ—¶é—´å‡å°‘ä¸€ç§’
 					temp--;
-					time.setText("Ê£ÓàÊ±¼ä£º"+temp);
+					time.setText("å‰©ä½™æ—¶é—´ï¼š"+temp);
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						return;
 					}
 					if(temp==0){	
-						JOptionPane.showMessageDialog(null,"Ê±¼äµ½!");
+						JOptionPane.showMessageDialog(null,"æ—¶é—´åˆ°!");
 						gameStop();
-						JOptionPane.showMessageDialog(null,"ÄãµÄµÃ·ÖÊÇ£º"+ totalscore);
+						JOptionPane.showMessageDialog(null,"ä½ çš„å¾—åˆ†æ˜¯ï¼š"+ totalscore);
 						startCount = false;
 						askForSave();
 						break;
@@ -316,7 +316,7 @@ class PlayingFrame extends Frame{
 				t = new Thread(new TimeController());
 			t.start();
 			if(timeleft==0){
-				JOptionPane.showMessageDialog(null,"Çëµã»÷ÖØÖÃ");
+				JOptionPane.showMessageDialog(null,"è¯·ç‚¹å‡»é‡ç½®");
 				return;
 			}
 			this.count = true;
@@ -328,29 +328,29 @@ class PlayingFrame extends Frame{
 		
 	}
 
-	class MouseButton extends Button implements Runnable{	//·½¸ñÀà£¬×ÔÉí´øÓĞ¿ØÖÆÑÕÉ«±ä»¯µÄÏß³ÌÀà
-		boolean flag = false;	//±ê¼Ç·½¸ñÄÜ·ñ±äÉ«µÄ±ê¼Ç·û
+	class MouseButton extends Button implements Runnable{	//æ–¹æ ¼ç±»ï¼Œè‡ªèº«å¸¦æœ‰æ§åˆ¶é¢œè‰²å˜åŒ–çš„çº¿ç¨‹ç±»
+		boolean flag = false;	//æ ‡è®°æ–¹æ ¼èƒ½å¦å˜è‰²çš„æ ‡è®°ç¬¦
 		boolean over = false;
 		int index = 0;
-		int[] activateInt = {1,4,7};	//·½¸ñ±äÉ«µÄÌõ¼şÎªËæ»úÊıÊÇ1£¬4£¬7
+		int[] activateInt = {1,4,7};	//æ–¹æ ¼å˜è‰²çš„æ¡ä»¶ä¸ºéšæœºæ•°æ˜¯1ï¼Œ4ï¼Œ7
 		int sleepTime;
 		
 		MouseController mc = new MouseController();
 		MouseButton(){
-			switch(speed){	//¸ù¾İÉè¶¨µÄÓÎÏ·ËÙ¶ÈÀ´ÉèÖÃÑÕÉ«±ä»¯Ê±¼ä
+			switch(speed){	//æ ¹æ®è®¾å®šçš„æ¸¸æˆé€Ÿåº¦æ¥è®¾ç½®é¢œè‰²å˜åŒ–æ—¶é—´
 				case 1:sleepTime = 1500;break;
 				case 2:sleepTime = 1200;break;
 				case 3:sleepTime = 1000;break;
 				case 4:sleepTime = 800;break;
 				case 5:sleepTime = 500;break;
 			}
-			setBackground(Color.GRAY);	//Ä¬ÈÏÑÕÉ«Îª»ÒÉ«
+			setBackground(Color.GRAY);	//é»˜è®¤é¢œè‰²ä¸ºç°è‰²
 		}
 		public void run(){
 			System.out.println("The run method is start!");
 			while(!over){
 					if(flag){
-						index = (int)(Math.random()*9+1);	//ÑÕÉ«±ä»¯Í¨¹ıËæ»úÊıµÄ±ä»¯À´ÊµÏÖ
+						index = (int)(Math.random()*9+1);	//é¢œè‰²å˜åŒ–é€šè¿‡éšæœºæ•°çš„å˜åŒ–æ¥å®ç°
 						if(numbersIn(activateInt,index)){
 							index = (int)(Math.random()*15+1);
 							try {
@@ -385,7 +385,7 @@ class PlayingFrame extends Frame{
 			System.out.println("The run method is over!");
 		}
 		
-		private boolean numbersIn(int[] a,int n){	//ÅĞ¶ÏÊı×ÖÊÇ·ñÔÚÒ»¸öÊı×éÖĞ
+		private boolean numbersIn(int[] a,int n){	//åˆ¤æ–­æ•°å­—æ˜¯å¦åœ¨ä¸€ä¸ªæ•°ç»„ä¸­
 			for(int i=0;i<a.length;i++){
 				if(a[i]==n){
 					return true;
@@ -394,21 +394,21 @@ class PlayingFrame extends Frame{
 			return false;
 		}
 		
-		public void cutThread(){	//ÖĞ¶ÏÏß³Ì
+		public void cutThread(){	//ä¸­æ–­çº¿ç¨‹
 			flag = false;
 			//over = true;
 			this.setBackground(Color.GRAY);
 		}
 		
-		public void setFlag(boolean f){	//ÉèÖÃ±ê¼Ç·û
+		public void setFlag(boolean f){	//è®¾ç½®æ ‡è®°ç¬¦
 			flag = f;
 		}
 		
-		public boolean getFlag(){	//»ñµÃ±ê¼Ç·û
+		public boolean getFlag(){	//è·å¾—æ ‡è®°ç¬¦
 			return flag;
 		}
 
-		class MouseController implements ActionListener{	//·½¸ñ°´Å¥µÄ¼àÌıÆ÷
+		class MouseController implements ActionListener{	//æ–¹æ ¼æŒ‰é’®çš„ç›‘å¬å™¨
 			Thread t;
 			public void actionPerformed(ActionEvent a){
 				if(t==null){
@@ -424,12 +424,12 @@ class PlayingFrame extends Frame{
 	
 }
 
-class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
-	Button gameStart = new Button("ÓÎÏ·¿ªÊ¼");
-	Button highestScore = new Button("×î¸ß·Ö");
-	Button about = new Button("¹ØÓÚÓÎÏ·");
-	Button gameOut = new Button("ÓÎÏ·½áÊø");
-	Label lb2 = new Label("´òµØÊó   V1.00",Label.CENTER);
+class StartFrame extends Frame{		//å¼€å§‹æ—¶çš„çª—å£
+	Button gameStart = new Button("æ¸¸æˆå¼€å§‹");
+	Button highestScore = new Button("æœ€é«˜åˆ†");
+	Button about = new Button("å…³äºæ¸¸æˆ");
+	Button gameOut = new Button("æ¸¸æˆç»“æŸ");
+	Label lb2 = new Label("æ‰“åœ°é¼    V1.00",Label.CENTER);
 	StartFrame(){
 		setLayout(new GridLayout(0,1));
 		add(lb2);
@@ -450,7 +450,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 		
 		gameOut.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent a){
-				JOptionPane.showMessageDialog(null,"Ğ»Ğ»ÓÎÏ·£¡");
+				JOptionPane.showMessageDialog(null,"è°¢è°¢æ¸¸æˆï¼");
 				setVisible(false);
 				System.exit(0);
 			}
@@ -479,12 +479,12 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 		setVisible(true);
 	}
 	
-	class AboutFrame extends Frame{		//¹ØÓÚÓÎÏ·µÄ´°¿Ú
+	class AboutFrame extends Frame{		//å…³äºæ¸¸æˆçš„çª—å£
 		int currentPage = 1;
-		Label pages = new Label(currentPage+"/3",Label.CENTER);	//Ò³ÊıÏÂ±ê
-		Button leftButton = new Button("Ç°Ò»Ò³");
-		Button rightButton = new Button("ºóÒ»Ò³");
-		Button back = new Button("·µ»Ø");
+		Label pages = new Label(currentPage+"/3",Label.CENTER);	//é¡µæ•°ä¸‹æ ‡
+		Button leftButton = new Button("å‰ä¸€é¡µ");
+		Button rightButton = new Button("åä¸€é¡µ");
+		Button back = new Button("è¿”å›");
 		MyPanel showPassage = new MyPanel();
 		Panel p1 = new Panel(new GridLayout(1,3));
 		Panel p2 = new Panel(new GridLayout(1,3));
@@ -493,12 +493,12 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 		
 		AboutFrame(){
 			setLayout(new BorderLayout());
-			passage[0] = "´òµØÊóÊÇÒ»¸ö¿ÉÒÔ¿¼Ñé·´Ó¦µÄÓÎÏ·";
-			passage[1] = "ÓÎÏ·Íæ·¨ºÜ¼òµ¥     µØÊó(×©¿é)ÑÕÉ«·ÖÎªÂÌ£¬À¶£¬ºìÈıÖÖ£¬´òÖĞÂÌÉ«¼Ó10·Ö£¬´òÖĞÀ¶É«¼Ó5·Ö£¬" +
-						"´òÖĞºìÉ«¿ÛÒ»´ÎÉúÃüÖµ£¬ÉúÃüÖµÎª0ÔòĞû²¼ÓÎÏ·½áÊø¡£ÓÎÏ·ËÙ¶È1ÊÇ×îÂı£¬5ÊÇ×î¿ì";
-			passage[2] = "V1.00°æÓĞ²¿·Ö¹¦ÄÜÉĞÎ´¿ª·¢£¬Èç¹ûÓöµ½Ê²Ã´ÎÊÌâÇëÁªÏµÎÒÀ²£¡Powered By LIN";
+			passage[0] = "æ‰“åœ°é¼ æ˜¯ä¸€ä¸ªå¯ä»¥è€ƒéªŒååº”çš„æ¸¸æˆ";
+			passage[1] = "æ¸¸æˆç©æ³•å¾ˆç®€å•     åœ°é¼ (ç –å—)é¢œè‰²åˆ†ä¸ºç»¿ï¼Œè“ï¼Œçº¢ä¸‰ç§ï¼Œæ‰“ä¸­ç»¿è‰²åŠ 10åˆ†ï¼Œæ‰“ä¸­è“è‰²åŠ 5åˆ†ï¼Œ" +
+						"æ‰“ä¸­çº¢è‰²æ‰£ä¸€æ¬¡ç”Ÿå‘½å€¼ï¼Œç”Ÿå‘½å€¼ä¸º0åˆ™å®£å¸ƒæ¸¸æˆç»“æŸã€‚æ¸¸æˆé€Ÿåº¦1æ˜¯æœ€æ…¢ï¼Œ5æ˜¯æœ€å¿«";
+			passage[2] = "V1.00ç‰ˆæœ‰éƒ¨åˆ†åŠŸèƒ½å°šæœªå¼€å‘ï¼Œå¦‚æœé‡åˆ°ä»€ä¹ˆé—®é¢˜è¯·è”ç³»æˆ‘å•¦ï¼Powered By LIN";
 			showPassage.setText(passage[0]);
-			p2.add(new Label("ÓÎÏ·ËµÃ÷£º",Label.LEFT),BorderLayout.NORTH);
+			p2.add(new Label("æ¸¸æˆè¯´æ˜ï¼š",Label.LEFT),BorderLayout.NORTH);
 			p2.add(back);
 			p1.add(leftButton);
 			p1.add(pages);
@@ -507,7 +507,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 			add(p1,BorderLayout.SOUTH);
 			add(showPassage,BorderLayout.CENTER);
 			
-			leftButton.addActionListener(new ActionListener(){	//¿ØÖÆÇ°Ò»Ò³µÄ¼àÌıÆ÷
+			leftButton.addActionListener(new ActionListener(){	//æ§åˆ¶å‰ä¸€é¡µçš„ç›‘å¬å™¨
 				public void actionPerformed(ActionEvent a){
 					if(currentPage==1){
 						return;
@@ -518,7 +518,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 				}
 			});
 			
-			rightButton.addActionListener(new ActionListener(){	//¿ØÖÆºóÒ»Ò³µÄ¼àÌıÆ÷
+			rightButton.addActionListener(new ActionListener(){	//æ§åˆ¶åä¸€é¡µçš„ç›‘å¬å™¨
 				public void actionPerformed(ActionEvent a){
 					if(currentPage==3){
 						return;
@@ -529,7 +529,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 				}
 			});
 			
-			back.addActionListener(new ActionListener(){	//·µ»ØÉÏÒ»´°¿Ú
+			back.addActionListener(new ActionListener(){	//è¿”å›ä¸Šä¸€çª—å£
 				public void actionPerformed(ActionEvent a){
 					setVisible(false);
 					new StartFrame();
@@ -547,7 +547,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 			setVisible(true);
 		}
 		
-		class MyPanel extends Panel{	//ÓÃ±êÇ©À´ÏÔÊ¾×Ö·û´®£¬Ã¿¸ö±êÇ©ÖĞ×Ö·û¸öÊıÎª10
+		class MyPanel extends Panel{	//ç”¨æ ‡ç­¾æ¥æ˜¾ç¤ºå­—ç¬¦ä¸²ï¼Œæ¯ä¸ªæ ‡ç­¾ä¸­å­—ç¬¦ä¸ªæ•°ä¸º10
 			ArrayList<Label> stringLabel = new ArrayList<Label>();
 			int count;
 			MyPanel(){
@@ -561,7 +561,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 				}
 			}
 			
-			public void setText(String s){	//½«
+			public void setText(String s){	//å°†
 				String temp = "";
 				count=0;
 				int i;
@@ -588,7 +588,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 		
 	}
 	
-	class OptionFrame extends Frame{	//ÓÎÏ·ÉèÖÃ´°¿Ú
+	class OptionFrame extends Frame{	//æ¸¸æˆè®¾ç½®çª—å£
 		Label[] labelList = new Label[3];
 		Label[] textList = new Label[3];
 		Label[] labelList2 = new Label[3];
@@ -596,9 +596,9 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 		Panel p2 = new Panel(new GridLayout(1,0));
 		Panel p3 = new Panel(new GridLayout(1,0));
 		Panel p4 = new Panel(new GridLayout(1,0));
-		Button ok = new Button("È·¶¨");
-		Button auto = new Button("Ä¬ÈÏ");
-		Button back = new Button("·µ»Ø");
+		Button ok = new Button("ç¡®å®š");
+		Button auto = new Button("é»˜è®¤");
+		Button back = new Button("è¿”å›");
 		Button left1 = new Button("<");
 		Button left2 = new Button("<");
 		Button left3 = new Button("<");
@@ -607,9 +607,9 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 		Button right3 = new Button(">");
 		OptionFrame(){
 			setLayout(new GridLayout(0,1));
-			labelList[0] = new Label("Ê±¼äÉèÖÃ£º");
-			labelList[1] = new Label("ÉúÃüÖµÉèÖÃ£º");
-			labelList[2] = new Label("ÓÎÏ·ËÙ¶È£º");
+			labelList[0] = new Label("æ—¶é—´è®¾ç½®ï¼š");
+			labelList[1] = new Label("ç”Ÿå‘½å€¼è®¾ç½®ï¼š");
+			labelList[2] = new Label("æ¸¸æˆé€Ÿåº¦ï¼š");
 			
 			textList[0] = new Label("60",Label.CENTER);
 			textList[1] = new Label("5",Label.CENTER);
@@ -633,7 +633,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 			add(p4);
 			
 			
-			auto.addActionListener(new ActionListener(){	//½«ÊıÖµÉèÖÃÎªÄ¬ÈÏÖµ
+			auto.addActionListener(new ActionListener(){	//å°†æ•°å€¼è®¾ç½®ä¸ºé»˜è®¤å€¼
 				public void actionPerformed(ActionEvent a){
 					textList[0].setText("60");
 					textList[1].setText("5");
@@ -641,7 +641,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 				}
 			});
 			
-			ok.addActionListener(new ActionListener(){		//¿ªÊ¼ÓÎÏ·
+			ok.addActionListener(new ActionListener(){		//å¼€å§‹æ¸¸æˆ
 				public void actionPerformed(ActionEvent a){
 					int i = Integer.parseInt(textList[0].getText());
 					int j = Integer.parseInt(textList[1].getText());
@@ -651,7 +651,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 				}
 			});
 			
-			back.addActionListener(new ActionListener(){	//·µ»ØÉÏÒ»´°¿Ú
+			back.addActionListener(new ActionListener(){	//è¿”å›ä¸Šä¸€çª—å£
 				public void actionPerformed(ActionEvent a){
 					setVisible(false);
 					new StartFrame();
@@ -737,11 +737,11 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 		
 	}
 	
-	class HighScoreFrame extends Frame{		//×î¸ß·Ö´°¿Ú£¬ÁĞ³ö·ÖÊı´Ó¸ßµ½µÍµÄ5Î»
+	class HighScoreFrame extends Frame{		//æœ€é«˜åˆ†çª—å£ï¼Œåˆ—å‡ºåˆ†æ•°ä»é«˜åˆ°ä½çš„5ä½
 		BufferedReader bf;
-		Button clear = new Button("Çå¿Õ¼ÇÂ¼");
-		Button back = new Button("·µ»Ø");
-		Label title = new Label("Íæ¼ÒĞÕÃû       µÃ·Ö                          Ê±¼ä                                       ",Label.CENTER);
+		Button clear = new Button("æ¸…ç©ºè®°å½•");
+		Button back = new Button("è¿”å›");
+		Label title = new Label("ç©å®¶å§“å       å¾—åˆ†                          æ—¶é—´                                       ",Label.CENTER);
 		Label[] resultList = new Label[5];
 		Panel p1 = new Panel(new GridLayout(1,0));
 		String[] tempresult;
@@ -758,7 +758,7 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 				}
 				i=0;
 				bf = new BufferedReader(new FileReader(f));
-				while((temp = bf.readLine())!=null && i<=4){	//´Ó¼ÇÂ¼ÎÄ¼şÖĞÒ»ÌõÌõµØ¶Á³ö¼ÇÂ¼
+				while((temp = bf.readLine())!=null && i<=4){	//ä»è®°å½•æ–‡ä»¶ä¸­ä¸€æ¡æ¡åœ°è¯»å‡ºè®°å½•
 					tempresult = temp.split("######");
 					temp = "";
 					for(int j=0;j<tempresult.length;j++){
@@ -769,9 +769,9 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 				}
 				bf.close();
 			} catch (FileNotFoundException e) {
-				JOptionPane.showMessageDialog(null,"³ö´íÁË£¡");
+				JOptionPane.showMessageDialog(null,"å‡ºé”™äº†ï¼");
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null,"³ö´íÁË£¡");
+				JOptionPane.showMessageDialog(null,"å‡ºé”™äº†ï¼");
 			}
 			
 			setLayout(new GridLayout(0,1));
@@ -784,25 +784,25 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 			}
 			add(p1);
 			
-			back.addActionListener(new ActionListener(){	//·µ»ØÉÏÒ»´°¿Ú
+			back.addActionListener(new ActionListener(){	//è¿”å›ä¸Šä¸€çª—å£
 				public void actionPerformed(ActionEvent a){
 					setVisible(false);
 					new StartFrame();
 				}
 			});
 			
-			clear.addActionListener(new ActionListener(){	//½«×î¸ß·Ö¼ÇÂ¼Çå¿Õ
+			clear.addActionListener(new ActionListener(){	//å°†æœ€é«˜åˆ†è®°å½•æ¸…ç©º
 				public void actionPerformed(ActionEvent a){
 					try {
-						int temp = JOptionPane.showConfirmDialog(null,"ÊÇ·ñÒªÉ¾³ı£¿");
+						int temp = JOptionPane.showConfirmDialog(null,"æ˜¯å¦è¦åˆ é™¤ï¼Ÿ");
 						if(temp==0){
 							BufferedWriter bw = new BufferedWriter(new FileWriter("F:\\MouseHit\\highscore.tg"));
 							bw.write("");
 							bw.close();
-							JOptionPane.showMessageDialog(null,"¼ÇÂ¼ÒÑ¾­Çå¿Õ£¡");
+							JOptionPane.showMessageDialog(null,"è®°å½•å·²ç»æ¸…ç©ºï¼");
 						}
 					} catch (IOException e) {
-						JOptionPane.showMessageDialog(null,"³ö´íÁË£¡");
+						JOptionPane.showMessageDialog(null,"å‡ºé”™äº†ï¼");
 					}
 				}
 			});
@@ -822,30 +822,30 @@ class StartFrame extends Frame{		//¿ªÊ¼Ê±µÄ´°¿Ú
 	
 }
 
-/*Ò»¸ö½Ğ´òµØÊóĞ¡ÓÎÏ·£¬¸Õ¿ªÊ¼´òËã×öµÄÊ±ºòÊÇÖÜÒ»£¨26ºÅ£©µÄÍíÉÏµÄÏë·¨ÁË¡£³õ³õÏëµÄÊ±ºò¾õµÃ»¹ÊÇÍ¦¼òµ¥µÄ£¬µ«ÊÇ×öÁËÆğÀ´²Å·¢ÏÖ
- * ÀïÃæÓĞºÜ¶àĞèÒª×¢ÒâµÄÏ¸½ÚµØ·½¡£
+/*ä¸€ä¸ªå«æ‰“åœ°é¼ å°æ¸¸æˆï¼Œåˆšå¼€å§‹æ‰“ç®—åšçš„æ—¶å€™æ˜¯å‘¨ä¸€ï¼ˆ26å·ï¼‰çš„æ™šä¸Šçš„æƒ³æ³•äº†ã€‚åˆåˆæƒ³çš„æ—¶å€™è§‰å¾—è¿˜æ˜¯æŒºç®€å•çš„ï¼Œä½†æ˜¯åšäº†èµ·æ¥æ‰å‘ç°
+ * é‡Œé¢æœ‰å¾ˆå¤šéœ€è¦æ³¨æ„çš„ç»†èŠ‚åœ°æ–¹ã€‚
  *
- * ×öµÄË¼Â·ºÜ¼òµ¥£¬ÉèÖÃ9¸ö°´Å¥À´´ú±íµØÊó¿Ó£¬ÉèÖÃ¿ªÊ¼£¬ÖØÖÃ£¬ÔİÍ£µÈ°´Å¥£¬È»ºó¶ÔÓÚÃ¿Ò»¸ö°´Å¥À´ËµÓÃÒ»¸öÏß³ÌÀ´¿ØÖÆËüÑÕÉ«µÄ
- * ±ä»¯£¬ÔÙÁíÍâÉèÖÃÒ»¸öÏß³ÌÀ´¿ØÖÆÊ±¼äµÄÁ÷ÊÅ¡£
+ * åšçš„æ€è·¯å¾ˆç®€å•ï¼Œè®¾ç½®9ä¸ªæŒ‰é’®æ¥ä»£è¡¨åœ°é¼ å‘ï¼Œè®¾ç½®å¼€å§‹ï¼Œé‡ç½®ï¼Œæš‚åœç­‰æŒ‰é’®ï¼Œç„¶åå¯¹äºæ¯ä¸€ä¸ªæŒ‰é’®æ¥è¯´ç”¨ä¸€ä¸ªçº¿ç¨‹æ¥æ§åˆ¶å®ƒé¢œè‰²çš„
+ * å˜åŒ–ï¼Œå†å¦å¤–è®¾ç½®ä¸€ä¸ªçº¿ç¨‹æ¥æ§åˆ¶æ—¶é—´çš„æµé€ã€‚
  * 
- * ÔÚ×öµÄ¹ı³ÌÖĞÎÒ·¢ÏÖ£¬ÓÉÓÚÒ»¿ªÊ¼Ïß³ÌµÄÉèÖÃ²»ºÏÀí£¬½«¿ØÖÆÈÎÎñÀàºÍ±»¿ØÖÆµÄÀàºÏ²¢µ½ÁËÒ»Æğ£¬½á¹ûµ¼ÖÂÏà»¥Ö®¼äµÄÂß¼­±äµÃºÜ»ì
- * ÂÒ£¬ÕâÊÇÉæ¼°¶àÏß³ÌµÄÇé¿ö¡£Ò»¶¨Òª×¢Òâ¿ØÖÆºÍ¶ÔÏó·ÖÀë¡£
+ * åœ¨åšçš„è¿‡ç¨‹ä¸­æˆ‘å‘ç°ï¼Œç”±äºä¸€å¼€å§‹çº¿ç¨‹çš„è®¾ç½®ä¸åˆç†ï¼Œå°†æ§åˆ¶ä»»åŠ¡ç±»å’Œè¢«æ§åˆ¶çš„ç±»åˆå¹¶åˆ°äº†ä¸€èµ·ï¼Œç»“æœå¯¼è‡´ç›¸äº’ä¹‹é—´çš„é€»è¾‘å˜å¾—å¾ˆæ··
+ * ä¹±ï¼Œè¿™æ˜¯æ¶‰åŠå¤šçº¿ç¨‹çš„æƒ…å†µã€‚ä¸€å®šè¦æ³¨æ„æ§åˆ¶å’Œå¯¹è±¡åˆ†ç¦»ã€‚
  * 
- * ÁíÍâÔÚ×öµÄ¹ı³ÌÖĞ£¬¸Ğ¾õ±È½Ï¼¬ÊÖµÄµØ·½£¬Ò»¸öÊÇ·ÖÊıµÄ±£´æ£¬Ò»¸öÊÇ¶ÔÓÚÏß³ÌµÄ¿ØÖÆ¡£
+ * å¦å¤–åœ¨åšçš„è¿‡ç¨‹ä¸­ï¼Œæ„Ÿè§‰æ¯”è¾ƒæ£˜æ‰‹çš„åœ°æ–¹ï¼Œä¸€ä¸ªæ˜¯åˆ†æ•°çš„ä¿å­˜ï¼Œä¸€ä¸ªæ˜¯å¯¹äºçº¿ç¨‹çš„æ§åˆ¶ã€‚
  * 
- * ÏÈËµ·ÖÊıµÄ±£´æ£¬×î³õµÄÉè¼ÆË¼Â·ÊÇ¶ÔµÄ£¬¾ÍÊÇÓÃÒ»¸öÎÄ±¾ÎÄµµ½«·ÖÊı±£´æÆğÀ´£¬ÔÚÍæÍêÒ»¾ÖÓÎÏ·Ö®ºóÒª±£´æÊ±£¬ÔÙÓÃIOÀà°Ñ¼ÇÂ¼Ò»
- * ÌõÒ»ÌõµØÈ¡³öÀ´£¬È»ºóÓÃÕıÔò±í´ïÊ½È¥ÌáÈ¡³öµ±ÖĞµÄ·ÖÊı£¬²¢ÇÒÓëµ±Ç°ĞèÒª±£´æµÄ·ÖÊı½øĞĞ±È½Ï£¬Í¨¹ı±È¶ÔÀ´ÕÒµ½µ±Ç°Òª±£´æµÄ·ÖÊı
- * ÔÚÇ°ÎåÃûÖĞÅÅµÚ¼¸¡£È·ÈÏºÃÖ®ºó£¬ÔÙ°Ñµ÷ÕûºÃµÄË³ĞòÖØĞÂĞ´»ØÓ²ÅÌ£¬´Ó¶ø´ïµ½ÁËÒ»¸ö±£´æµÄĞ§¹û¡£¹ØÓÚIO·½ÃæµÄÎÊÌâÆäÊµ²»´ó£¬µ«ÊÇ
- * ÔÚ·ÖÊıÏÔÊ¾µÄÊ±ºòÈ´ÈÃÎÒºÜ·¸ÄÑ¡£ÎÒµ±³õ´òËãÓÃLabel±êÇ©ÀàÀ´ÏÔÊ¾·ÖÊı£¬µ«ÊÇ·¢ÏÖ±êÇ©Àà²»ÄÜ×Ô¶¯»»ĞĞ£¬ÓÚÊÇ¸ÄÓÃpanel¼Ó¶à¸ö±êÇ©
- * Àà½áºÏµÄ·½·¨À´ÏÔÊ¾·ÖÊı¡£»¹ÓĞÒ»µã£¬ÎÒĞèÒªÏÔÊ¾µÄÊÇÍæ¼ÒĞÕÃû£¬·ÖÊıºÍ±£´æÊ±¼ä£¬µ«ÊÇÓÉÓÚĞÕÃû³¤¶È²»Ò»Ñù£¬Ã¿´Î³öÀ´µÄ×Ö·û´®µÄ
- * ³¤¶È¾Í²»Ò»Ñù£¬×îºóÔÚlabelÉÏÏÔÊ¾µÄ½á¹ûÒ²²»Ò»Ñù£¬ËùÒÔ²»µÃ²»Í¨¹ıÔö²¹¿Õ¸ñÀ´ĞŞÕı×Ö·û´®³¤¶È£¬µ«ÊÇÓÖ²»ÖªµÀÎªÊ²Ã´£¬Ôö²¹¿Õ¸ñÖ®
- * ºó£¬ÏÔÊ¾³öÀ´µÄ½á¹û»¹ÊÇÓĞÎÊÌâ£¬ÓÚÊÇ¾Í·ÅÏÂ²»¹ÜÁË£¬Ï£ÍûÔÚÏÂÒ»¸ö°æ±¾ÖĞ»á½â¾ö¡£
+ * å…ˆè¯´åˆ†æ•°çš„ä¿å­˜ï¼Œæœ€åˆçš„è®¾è®¡æ€è·¯æ˜¯å¯¹çš„ï¼Œå°±æ˜¯ç”¨ä¸€ä¸ªæ–‡æœ¬æ–‡æ¡£å°†åˆ†æ•°ä¿å­˜èµ·æ¥ï¼Œåœ¨ç©å®Œä¸€å±€æ¸¸æˆä¹‹åè¦ä¿å­˜æ—¶ï¼Œå†ç”¨IOç±»æŠŠè®°å½•ä¸€
+ * æ¡ä¸€æ¡åœ°å–å‡ºæ¥ï¼Œç„¶åç”¨æ­£åˆ™è¡¨è¾¾å¼å»æå–å‡ºå½“ä¸­çš„åˆ†æ•°ï¼Œå¹¶ä¸”ä¸å½“å‰éœ€è¦ä¿å­˜çš„åˆ†æ•°è¿›è¡Œæ¯”è¾ƒï¼Œé€šè¿‡æ¯”å¯¹æ¥æ‰¾åˆ°å½“å‰è¦ä¿å­˜çš„åˆ†æ•°
+ * åœ¨å‰äº”åä¸­æ’ç¬¬å‡ ã€‚ç¡®è®¤å¥½ä¹‹åï¼Œå†æŠŠè°ƒæ•´å¥½çš„é¡ºåºé‡æ–°å†™å›ç¡¬ç›˜ï¼Œä»è€Œè¾¾åˆ°äº†ä¸€ä¸ªä¿å­˜çš„æ•ˆæœã€‚å…³äºIOæ–¹é¢çš„é—®é¢˜å…¶å®ä¸å¤§ï¼Œä½†æ˜¯
+ * åœ¨åˆ†æ•°æ˜¾ç¤ºçš„æ—¶å€™å´è®©æˆ‘å¾ˆçŠ¯éš¾ã€‚æˆ‘å½“åˆæ‰“ç®—ç”¨Labelæ ‡ç­¾ç±»æ¥æ˜¾ç¤ºåˆ†æ•°ï¼Œä½†æ˜¯å‘ç°æ ‡ç­¾ç±»ä¸èƒ½è‡ªåŠ¨æ¢è¡Œï¼Œäºæ˜¯æ”¹ç”¨panelåŠ å¤šä¸ªæ ‡ç­¾
+ * ç±»ç»“åˆçš„æ–¹æ³•æ¥æ˜¾ç¤ºåˆ†æ•°ã€‚è¿˜æœ‰ä¸€ç‚¹ï¼Œæˆ‘éœ€è¦æ˜¾ç¤ºçš„æ˜¯ç©å®¶å§“åï¼Œåˆ†æ•°å’Œä¿å­˜æ—¶é—´ï¼Œä½†æ˜¯ç”±äºå§“åé•¿åº¦ä¸ä¸€æ ·ï¼Œæ¯æ¬¡å‡ºæ¥çš„å­—ç¬¦ä¸²çš„
+ * é•¿åº¦å°±ä¸ä¸€æ ·ï¼Œæœ€ååœ¨labelä¸Šæ˜¾ç¤ºçš„ç»“æœä¹Ÿä¸ä¸€æ ·ï¼Œæ‰€ä»¥ä¸å¾—ä¸é€šè¿‡å¢è¡¥ç©ºæ ¼æ¥ä¿®æ­£å­—ç¬¦ä¸²é•¿åº¦ï¼Œä½†æ˜¯åˆä¸çŸ¥é“ä¸ºä»€ä¹ˆï¼Œå¢è¡¥ç©ºæ ¼ä¹‹
+ * åï¼Œæ˜¾ç¤ºå‡ºæ¥çš„ç»“æœè¿˜æ˜¯æœ‰é—®é¢˜ï¼Œäºæ˜¯å°±æ”¾ä¸‹ä¸ç®¡äº†ï¼Œå¸Œæœ›åœ¨ä¸‹ä¸€ä¸ªç‰ˆæœ¬ä¸­ä¼šè§£å†³ã€‚
  * 
- * ÔÙËµËµÏß³ÌµÄ¿ØÖÆÎÊÌâ£¬ÓÉÓÚÉè¼ÆÉÏµÄ²»×ãµ¼ÖÂÁËÏß³ÌºÍ¶ÔÏó°ó¶¨ÔÚÁËÒ»Æğ£¬ËäÈ»ÔÚÔËĞĞÉÏ²»»áÓĞÌ«´óµÄÎÊÌâ£¬µ«ÊÇÔÚ¸üĞÂÎ¬»¤ÉÏ£¬ÌØ
- * ±ğÊÇ¸ü»»ÁíÒ»¸öÏß³ÌµÄÊ±ºò¾Í»áºÜÂé·³£¬¾Í²»µÃ²»°Ñ´ó²¿·ÖÏà¹Ø´úÂë¶¼ÒªÖØĞ´Ò»±é¡£Ò²ÕıÊÇ½«Ïß³ÌºÍ¶ÔÏó°ó¶¨µ½ÁËÒ»Æğ£¬µ¼ÖÂÔÚÒ»¿ªÊ¼
- * µ÷ÊÔµÄÊ±ºò³ÌĞòÔõÃ´¶¼ÅÜ²»ÆğÀ´£¬ºóÀ´²Å·¢ÏÖÊÇÒòÎªĞÂ½¨Ïß³Ì²¢Ã»ÓĞÒÔ¶ÔÏó±¾ÉíÀ´´´½¨£¬Ëµ°×ÁË¾ÍÊÇ´´½¨ÁËÒ»¸ö¸ù±¾²»ÊÇÔÚ¿ØÖÆÎÒĞèÒª
- * ¿ØÖÆµÄ¶ÔÏóµÄÏß³Ì£¬È»ºóµ÷ÊÔÁËºÜ¾Ã²Å·¢ÏÖÕâÒ»µã¡£
+ * å†è¯´è¯´çº¿ç¨‹çš„æ§åˆ¶é—®é¢˜ï¼Œç”±äºè®¾è®¡ä¸Šçš„ä¸è¶³å¯¼è‡´äº†çº¿ç¨‹å’Œå¯¹è±¡ç»‘å®šåœ¨äº†ä¸€èµ·ï¼Œè™½ç„¶åœ¨è¿è¡Œä¸Šä¸ä¼šæœ‰å¤ªå¤§çš„é—®é¢˜ï¼Œä½†æ˜¯åœ¨æ›´æ–°ç»´æŠ¤ä¸Šï¼Œç‰¹
+ * åˆ«æ˜¯æ›´æ¢å¦ä¸€ä¸ªçº¿ç¨‹çš„æ—¶å€™å°±ä¼šå¾ˆéº»çƒ¦ï¼Œå°±ä¸å¾—ä¸æŠŠå¤§éƒ¨åˆ†ç›¸å…³ä»£ç éƒ½è¦é‡å†™ä¸€éã€‚ä¹Ÿæ­£æ˜¯å°†çº¿ç¨‹å’Œå¯¹è±¡ç»‘å®šåˆ°äº†ä¸€èµ·ï¼Œå¯¼è‡´åœ¨ä¸€å¼€å§‹
+ * è°ƒè¯•çš„æ—¶å€™ç¨‹åºæ€ä¹ˆéƒ½è·‘ä¸èµ·æ¥ï¼Œåæ¥æ‰å‘ç°æ˜¯å› ä¸ºæ–°å»ºçº¿ç¨‹å¹¶æ²¡æœ‰ä»¥å¯¹è±¡æœ¬èº«æ¥åˆ›å»ºï¼Œè¯´ç™½äº†å°±æ˜¯åˆ›å»ºäº†ä¸€ä¸ªæ ¹æœ¬ä¸æ˜¯åœ¨æ§åˆ¶æˆ‘éœ€è¦
+ * æ§åˆ¶çš„å¯¹è±¡çš„çº¿ç¨‹ï¼Œç„¶åè°ƒè¯•äº†å¾ˆä¹…æ‰å‘ç°è¿™ä¸€ç‚¹ã€‚
  * 
- * ÖÁÓÚÒ»Ğ©¾ßÌåµÄÊµÏÖÎÊÌâ¾Í²»¶àËµÁË¡£													
+ * è‡³äºä¸€äº›å…·ä½“çš„å®ç°é—®é¢˜å°±ä¸å¤šè¯´äº†ã€‚													
  * 																										2012.3.30
  * */
